@@ -10,6 +10,11 @@
 return array(
 
     /**
+     * Environment
+     */
+    'APP_ENV' => 'production',
+
+    /**
      * Database
      */
     'DB_HOST'     => '',
