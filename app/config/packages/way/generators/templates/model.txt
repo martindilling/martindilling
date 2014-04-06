@@ -1,0 +1,28 @@
+<?php namespace MDH\Entities;
+
+class $NAME$ extends \Eloquent {
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = '';
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        // 'title' => 'required'
+    ];
+    
+    /**
+     * Properties allowed for mass-assignment.
+     *
+     * @var array
+     */
+    protected $fillable = [];
+
+}
