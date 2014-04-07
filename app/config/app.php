@@ -110,6 +110,8 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Clockwork\Support\Laravel\ClockworkServiceProvider',
 
+        'MDH\ServiceProviders\Repositories',
+
     ),
 
     /*

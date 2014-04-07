@@ -10,10 +10,12 @@ class DatabaseSeeder extends Seeder {
     public function run()
     {
         DB::table('users')->truncate();
+        DB::table('posts')->truncate();
         
         Eloquent::unguard();
 
          $this->call('UsersTableSeeder');
+         $this->call('PostsTableSeeder');
     }
 
 }

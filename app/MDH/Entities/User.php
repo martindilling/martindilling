@@ -38,8 +38,24 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
      * @var array
      */
     protected $fillable = ['admin', 'active', 'name', 'email', 'password'];
-    
-    
+
+
+
+    /*********************************************
+     * Relationships
+     *********************************************/
+
+    public function posts()
+    {
+        return $this->hasMany('MDH\Entities\Post');
+    }
+
+
+
+    /*********************************************
+     * Implemented
+     *********************************************/
+
     /**
      * Get the unique identifier for the user.
      *

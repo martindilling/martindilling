@@ -1,6 +1,9 @@
 <li class="">
     <a href="{{ route('home') }}">Home</a>
 </li>
+<li class="">
+    <a href="{{ route('posts.index') }}">Blog</a>
+</li>
 @if (Auth::check())
 <li class="">
     <a href="{{ route('logout') }}">Logout</a>
