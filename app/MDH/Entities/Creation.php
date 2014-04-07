@@ -1,13 +1,13 @@
 <?php namespace MDH\Entities;
 
-class Post extends \Eloquent {
+class Creation extends \Eloquent {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'posts';
+    protected $table = 'creations';
 
     /**
      * Validation rules.
@@ -18,7 +18,9 @@ class Post extends \Eloquent {
         'user_id'      => '',
         'title'        => 'required',
         'slug'         => 'required',
-        'summary'      => '',
+        'weblink'      => '',
+        'image'        => 'required',
+        'thumb'        => 'required',
         'body'         => 'required',
         'publish_at'   => 'date',
     ];
@@ -28,7 +30,7 @@ class Post extends \Eloquent {
      *
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'summary', 'body', 'publish_at'];
+    protected $fillable = ['title' ,'slug', 'weblink', 'image', 'thumb', 'body', 'publish_at'];
 
 
 
@@ -43,7 +45,6 @@ class Post extends \Eloquent {
 
 
 
-
     /**
      * Get the attributes that should be converted to dates.
      *
@@ -53,5 +54,15 @@ class Post extends \Eloquent {
     {
         return ['publish_at', static::CREATED_AT, static::UPDATED_AT];
     }
-
+    
+    
+    public function getImage()
+    {
+        return 'uploads/creation/' . $this->image;
+    }
+    
+    public function getThumb()
+    {
+        return 'uploads/creation/thumbs/' . $this->thumb;
+    }
 }

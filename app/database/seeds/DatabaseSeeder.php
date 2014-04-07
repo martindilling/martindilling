@@ -11,11 +11,13 @@ class DatabaseSeeder extends Seeder {
     {
         DB::table('users')->truncate();
         DB::table('posts')->truncate();
+        DB::table('creations')->truncate();
         
         Eloquent::unguard();
 
          $this->call('UsersTableSeeder');
          $this->call('PostsTableSeeder');
+         $this->call('CreationsTableSeeder');
     }
 
 }

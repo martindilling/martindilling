@@ -18,7 +18,7 @@ class $NAME$ extends \BaseController {
      */
     public function __construct($MODEL$ $$COLLECTION$)
     {
-        $this->$$COLLECTION$ = $$COLLECTION$;
+        $this->$COLLECTION$ = $$COLLECTION$;
     }
 
     /**
@@ -28,7 +28,7 @@ class $NAME$ extends \BaseController {
      */
     public function index()
     {
-        $$COLLECTION$ = $this->$$COLLECTION$->all();
+        $$COLLECTION$ = $this->$COLLECTION$->all();
 
         return View::make('$COLLECTION$.index', compact('$COLLECTION$'));
     }
@@ -61,7 +61,7 @@ class $NAME$ extends \BaseController {
                 ->withInput();
         }
 
-        $this->$$COLLECTION$->create($input);
+        $this->$COLLECTION$->create($input);
 
         return Redirect::route('$COLLECTION$.index');
     }
@@ -74,7 +74,7 @@ class $NAME$ extends \BaseController {
      */
     public function show($id)
     {
-        $$RESOURCE$ = $this->$$COLLECTION$->findOrFail($id);
+        $$RESOURCE$ = $this->$COLLECTION$->findOrFail($id);
 
         return View::make('$COLLECTION$.show', compact('$RESOURCE$'));
     }
@@ -87,7 +87,7 @@ class $NAME$ extends \BaseController {
      */
     public function edit($id)
     {
-        $$RESOURCE$ = $this->$$COLLECTION$->find($id);
+        $$RESOURCE$ = $this->$COLLECTION$->find($id);
 
         return View::make('$COLLECTION$.edit', compact('$RESOURCE$'));
     }
@@ -102,7 +102,7 @@ class $NAME$ extends \BaseController {
     {
         $input = Input::all();
 
-        $$RESOURCE$ = $this->$$COLLECTION$->findOrFail($id);
+        $$RESOURCE$ = $this->$COLLECTION$->findOrFail($id);
 
         $validator = Validator::make($input, $MODEL$::$rules);
 
@@ -126,7 +126,7 @@ class $NAME$ extends \BaseController {
      */
     public function destroy($id)
     {
-        $this->$$COLLECTION$->destroy($id);
+        $this->$COLLECTION$->destroy($id);
 
         return Redirect::route('$COLLECTION$.index');
     }

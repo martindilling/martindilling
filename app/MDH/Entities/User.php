@@ -50,6 +50,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('MDH\Entities\Post');
     }
 
+    public function creations()
+    {
+        return $this->hasMany('MDH\Entities\Creation');
+    }
+
 
 
     /*********************************************

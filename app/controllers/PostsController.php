@@ -1,6 +1,5 @@
 <?php
 
-use MDH\Entities\Post;
 use MDH\Repositories\PostRepositoryInterface;
 
 class PostsController extends \BaseController {

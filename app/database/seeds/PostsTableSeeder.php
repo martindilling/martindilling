@@ -21,7 +21,6 @@ class PostsTableSeeder extends Seeder {
                 'summary'      => Str::limit($body, 100),
                 'body'         => $body,
                 'publish_at'   => $index == 1 ? $faker->dateTimeBetween('-1 hour', 'now') : $faker->dateTimeBetween('-30 days', '+5 days'),
-//                'unpublish_at' => $index == 1 ? 'Martin Dilling-Hansen' : $faker->name(),
             ]);
         }
     }

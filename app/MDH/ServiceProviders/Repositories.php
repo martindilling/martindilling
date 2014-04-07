@@ -11,5 +11,9 @@ class Repositories extends ServiceProvider
             'MDH\Repositories\PostRepositoryInterface',
             'MDH\Repositories\Eloquent\PostRepository'
         );
+        $this->app->bind(
+            'MDH\Repositories\CreationRepositoryInterface',
+            'MDH\Repositories\Eloquent\CreationRepository'
+        );
     }
 }
