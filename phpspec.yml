@@ -1,0 +1,6 @@
+suites:
+    imt_suite:
+        namespace: MDH
+        src_path: app
+        spec_path: app
+        spec_prefix: spec

@@ -1,6 +1,9 @@
 <?php namespace MDH\Entities;
 
+use MDH\Services\Presenter\PresentableTrait;
+
 class Creation extends \Eloquent {
+    use PresentableTrait;
 
     /**
      * The database table used by the model.
@@ -8,6 +11,13 @@ class Creation extends \Eloquent {
      * @var string
      */
     protected $table = 'creations';
+
+    /**
+     * Presenter to contain data logic
+     *
+     * @var string
+     */
+    protected $presenter = 'MDH\Presenters\CreationPresenter';
 
     /**
      * Validation rules.
@@ -44,6 +54,10 @@ class Creation extends \Eloquent {
     }
 
 
+
+    /*********************************************
+     * Dates to be used as Carbon instances
+     *********************************************/
 
     /**
      * Get the attributes that should be converted to dates.

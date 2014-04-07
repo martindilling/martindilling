@@ -1,18 +1,18 @@
-<li class="">
-    <a href="{{ route('home') }}">Portfolio</a>
+<li{{ set_active(array('home', 'creations.*')) }}>
+    {{ link_to_route( 'creations.index', 'Portfolio' ) }}
 </li>
-<li class="">
-    <a href="{{ route('posts.index') }}">Blog</a>
+<li{{ set_active('posts.*') }}>
+    {{ link_to_route( 'posts.index', 'Blog' ) }}
 </li>
-<li class="">
-    <a href="{{ route('about') }}">About</a>
+<li{{ set_active('about.*') }}>
+    {{ link_to_route( 'about', 'About' ) }}
 </li>
-<li class="">
-    <a href="{{ route('contact') }}">Contact</a>
+<li{{ set_active('contact.*') }}>
+    {{ link_to_route( 'contact', 'Contact' ) }}
 </li>
 
 @if (Auth::check())
-<li class="">
-    <a href="{{ route('logout') }}">Logout</a>
-</li>
+    <li>
+        {{ link_to_route( 'logout', 'Logout' ) }}
+    </li>
 @endif

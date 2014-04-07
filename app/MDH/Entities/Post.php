@@ -1,6 +1,9 @@
 <?php namespace MDH\Entities;
 
+use MDH\Services\Presenter\PresentableTrait;
+
 class Post extends \Eloquent {
+    use PresentableTrait;
 
     /**
      * The database table used by the model.
@@ -8,6 +11,13 @@ class Post extends \Eloquent {
      * @var string
      */
     protected $table = 'posts';
+
+    /**
+     * Presenter to contain data logic
+     * 
+     * @var string
+     */
+    protected $presenter = 'MDH\Presenters\PostPresenter';
 
     /**
      * Validation rules.
@@ -43,6 +53,9 @@ class Post extends \Eloquent {
 
 
 
+    /*********************************************
+     * Dates to be used as Carbon instances
+     *********************************************/
 
     /**
      * Get the attributes that should be converted to dates.
