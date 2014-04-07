@@ -24,12 +24,7 @@
 <!-- Google Analytics -->
 @include ('layouts.partials.analytics')
 
-@if (Auth::check())
-<div class="fixed-top-right">
-    <a href="{{ route('logout') }}" class="btn btn-danger" role="button">Logout</a>
-</div>
-@endif
-
+<!-- Content -->
 <div class="container">
     <div class="header">
         <div class="title">Martin Dilling-Hansen</div>

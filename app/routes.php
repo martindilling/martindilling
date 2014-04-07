@@ -3,11 +3,7 @@
 /**
  * Home route
  */
-Route::get('/', array('as' => 'home', function()
-{
-    return View::make('hello');
-}));
-
+Route::get('/', array('as' => 'home', 'uses' => 'CreationsController@index'));
 
 /**
  * Auth routes
