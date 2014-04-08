@@ -44,6 +44,62 @@ $(document).ready(function() {
         container: 'body'
     });
 
+//    moment().format("yy-mm-dd HH:mm:ss");
+
+    $('#publishDate').datetimepicker({
+        pickDate: true,                 //en/disables the date picker
+        pickTime: true,                 //en/disables the time picker
+        useMinutes: true,               //en/disables the minutes picker
+        useSeconds: true,               //en/disables the seconds picker
+        useCurrent: true,               //when true, picker will set the value to the current date/time     
+        minuteStepping:1,               //set the minute stepping
+        showToday: true,                 //shows the today indicator
+        language:'en',                  //sets language locale
+});
+
+
+//    var publishDate = $('#publishDate');
+////    var unpublishDate = $('#unpublishDate');
+//
+//    publishDate.datetimepicker({
+//        timeFormat: 'HH:mm:ss',
+//        dateFormat: 'yy-mm-dd',
+//        changeMonth: true,
+//        changeYear: true,
+////        addSliderAccess: true,
+////        sliderAccessArgs: { touchonly: false },
+////        onClose: function(dateText, inst) {
+////            // if (unpublishDate.val() !== '') {
+////            // 	var testStartDate = publishDate.datetimepicker('getDate');
+////            // 	var testEndDate = unpublishDate.datetimepicker('getDate');
+////            // 	if (testStartDate > testEndDate)
+////            // 		unpublishDate.datetimepicker('setDate', testStartDate);
+////            // }
+////            // else {
+////            // 	unpublishDate.val(dateText);
+////            // }
+////        },
+////        onSelect: function (selectedDateTime){
+////            unpublishDate.datetimepicker('option', 'minDate', publishDate.datetimepicker('getDate') );
+////        }
+//    });
+
+
+
+    function updateMdPreview() {
+        var input = $("#mdbody").val();
+        $("#mdpreview").html(Markdown(input));
+        doPrettyprint();
+        createHeaderLink();
+//        contentTables();
+    }
+
+    updateMdPreview();
+
+    $('#mdbody').keyup(function(){
+        updateMdPreview();
+    });
+
 
 
     // ==========================================================================

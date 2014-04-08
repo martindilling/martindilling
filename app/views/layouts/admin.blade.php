@@ -11,8 +11,11 @@
     <!-- Styles -->
     {{ HTML::style('http://fonts.googleapis.com/css?family=Lato:100,300,400,700') }}
     {{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
+    {{ HTML::style('assets/vendor/css/jasny-bootstrap.min.css') }}
+    {{ HTML::style('assets/vendor/css/bootstrap-datetimepicker.min.css') }}
     {{ HTML::style('assets/css/main.css') }}
     {{ HTML::style('assets/css/admin-extra.css') }}
+    {{-- HTML::style('assets/css/admin.css') --}}
     @yield('styles')
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,8 +45,12 @@
 <!-- Scripts -->
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
 {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
-{{ HTML::script('assets/vendor/js/prettify.js') }}
+{{ HTML::script('assets/vendor/js/jasny-bootstrap.min.js') }}
+{{ HTML::script('assets/vendor/js/moment.min.js') }}
+{{ HTML::script('assets/vendor/js/bootstrap-datetimepicker.min.js') }}
+{{ HTML::script('assets/vendor/js/js-markdown-extra.js') }}
 {{ HTML::script('assets/vendor/js/laravel-restful.js') }}
+{{ HTML::script('assets/vendor/js/prettify.js') }}
 {{ HTML::script('assets/js/main.js') }}
 @yield('scripts')
 </body>

@@ -862,13 +862,14 @@ textarea {
 }
 .site-nav a:hover, .site-nav a:active,
 .site-nav .active a {
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -o-transition: all 200ms linear;
-  transition: all 200ms linear;
+text-decoration: none;
+background: rgba(255, 255, 255, 0.1);
+-webkit-transition: all 200ms linear;
+-moz-transition: all 200ms linear;
+-o-transition: all 200ms linear;
+transition: all 200ms linear;
 }
+
 
 @media (max-width: 768px) {
   .header {

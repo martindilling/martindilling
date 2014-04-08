@@ -21,6 +21,22 @@ class CreateUsersTable extends Migration {
             $table->string('password');
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            'admin'    => 1,
+            'active'   => 1,
+            'name'     => 'Martin Dilling-Hansen',
+            'email'    => 'martindilling@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        DB::table('users')->insert([
+            'admin'    => 1,
+            'active'   => 1,
+            'name'     => 'Demo User',
+            'email'    => 'demo@example.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 
 

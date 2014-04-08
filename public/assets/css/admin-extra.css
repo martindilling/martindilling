@@ -1,0 +1,33 @@
+.site-nav a.admin-logout {
+    background: rgba(0,0,0, 0.05);
+}
+.site-nav a.admin-create {
+    padding: 5px 4px;
+    margin-left: -3px;
+    margin-right: 10px;
+    background: rgba(0,0,0, 0.05);
+}
+.site-nav a.admin-create:hover,
+.site-nav a.admin-logout:hover {
+    color: #555555;
+}
+
+
+.headerimg a.admin-creation-action,
+.listitem a.admin-creation-action {
+    display: inline-block;
+    zoom: 1;
+    background: #ecf0f1;
+    padding: 6px 15px;
+    font-size: 17px;
+    color: #555555;
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.headerimg a.admin-creation-action:hover,
+.listitem a.admin-creation-action:hover {
+    color: #ecf0f1;
+    background: rgba(255,255,255, 0.4);
+}

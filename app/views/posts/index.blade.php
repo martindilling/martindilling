@@ -6,6 +6,14 @@
         <div class="row">
             @foreach ($posts as $post)
                 <div class="col-md-12 listitem post">
+                    @if (Auth::check())
+                        <a href="{{ route('posts.edit', array('id' => $post->id)) }}" class="admin-creation-action">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="{{ route('posts.destroy', array('id' => $post->id)) }}" class="admin-creation-action" data-method="delete">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    @endif
                     <a href="{{ route('posts.show', array('id' => $post->id, 'slug' => $post->slug)) }}">
                         <div class="meta">
                             <span class="title">{{ $post->title }}</span>

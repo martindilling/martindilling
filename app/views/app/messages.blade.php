@@ -1,83 +1,94 @@
-@if ($errors->any() || Session::has('error') || Session::has('success') || Session::has('info') || Session::has('warning'))
+@if ($errors->any() || $messages = Session::get('messages'))
 
-	<div class="alerts">
+    <div class="alerts">
 
-		@if ($errors->any())
-			<div class="alert alert-dismissable alert-danger">
-				<button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
-				<strong>{{ Session::has('flashhead') ? Session::get('flashhead') : 'Validation errors :(' }}</strong>
-				@if ($errors->any())
-					@foreach ($errors->all('<li>:message</li>') as $message)
-						{{ $message }}
-					@endforeach
-				@endif
-			</div>
-		@endif
+        <style>
+            .alert ul {
+                list-style-type: none;
+                padding: 0;
+                position: relative;
+            }
+            .alert ul li {
+                padding-left: 1.2em;
+                margin: 0.1em 0;
+            }
+            .alert ul li:before {
+                content: url({{ asset('assets/img/bullet.png') }});
+                width: 8px;
+                height: 12px;
+                display: block;
+                position: absolute;
+                left: 2px;
+                filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+                opacity: 0.2;
+                -webkit-transition: all 150ms linear;
+                -moz-transition: all 150ms linear;
+                -o-transition: all 150ms linear;
+                transition: all 150ms linear;
+            }
+        </style>
 
-		@if (Session::has('error'))
-			<div class="alert alert-dismissable alert-danger">
-				<button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
-				<strong>{{ Session::has('flashhead') ? Session::get('flashhead') : 'Error :(' }}</strong>
-				@if (is_array(Session::get('error')))
-					<ul>
-						@foreach (Session::get('error') as $message)
-							<li>{{ $message }}</li>
-						@endforeach
-					</ul>
-				@else
-					<p>{{ Session::get('error') }}</p>
-				@endif
-			</div>
-		@endif
+        @if ($errors->any())
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
+                <ul>
+                    @if ($errors->any())
+                        @foreach ($errors->all('<li>:message</li>') as $message)
+                            {{ $message }}
+                        @endforeach
+                    @endif
+                </ul>
+            </div>
+        @endif
 
-		@if (Session::has('warning'))
-			<div class="alert alert-dismissable alert-warning">
-				<button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
-				<strong>{{ Session::has('flashhead') ? Session::get('flashhead') : 'Warning :/' }}</strong>
-				@if (is_array(Session::get('warning')))
-					<ul>
-						@foreach (Session::get('warning') as $message)
-							<li>{{ $message }}</li>
-						@endforeach
-					</ul>
-				@else
-					<p>{{ Session::get('warning') }}</p>
-				@endif
-			</div>
-		@endif
+        @if (isset($messages))
 
-		@if (Session::has('info'))
-			<div class="alert alert-dismissable alert-info">
-				<button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
-				<strong>{{ Session::has('flashhead') ? Session::get('flashhead') : 'Info O.O' }}</strong>
-				@if (is_array(Session::get('info')))
-					<ul>
-						@foreach (Session::get('info') as $message)
-							<li>{{ $message }}</li>
-						@endforeach
-					</ul>
-				@else
-					<p>{{ Session::get('info') }}</p>
-				@endif
-			</div>
-		@endif
+            @if ($messages->has('success'))
+                <div class="alert alert-dismissable alert-success">
+                    <button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
+                    <ul>
+                        @foreach ($messages->get('success', '<li>:message</li>') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        
+            @if ($messages->has('error'))
+                <div class="alert alert-dismissable alert-danger">
+                    <button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
+                    <ul>
+                        @foreach ($messages->get('error', '<li>:message</li>') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        
+            @if ($messages->has('info'))
+                <div class="alert alert-dismissable alert-info">
+                    <button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
+                    <ul>
+                        @foreach ($messages->get('info', '<li>:message</li>') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        
+            @if ($messages->has('warning'))
+                <div class="alert alert-dismissable alert-warning">
+                    <button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
+                    <ul>
+                        @foreach ($messages->get('warning', '<li>:message</li>') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-		@if (Session::has('success'))
-			<div class="alert alert-dismissable alert-success">
-				<button type="button" class="close" data-close="alert" aria-hidden="true">&times;</button>
-				<strong>{{ Session::has('flashhead') ? Session::get('flashhead') : 'Success :D' }}</strong>
-				@if (is_array(Session::get('success')))
-					<ul>
-						@foreach (Session::get('success') as $message)
-							<li>{{ $message }}</li>
-						@endforeach
-					</ul>
-				@else
-					<p>{{ Session::get('success') }}</p>
-				@endif
-			</div>
-		@endif
+        @endif
 
-	</div>
+    </div>
 
 @endif

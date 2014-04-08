@@ -27,7 +27,7 @@ class Post extends \Eloquent {
     public static $rules = [
         'user_id'      => '',
         'title'        => 'required',
-        'slug'         => 'required',
+        'slug'         => 'required|unique:posts,slug',
         'summary'      => '',
         'body'         => 'required',
         'publish_at'   => 'date',

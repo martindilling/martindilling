@@ -4,6 +4,14 @@
 
     <div class="row">
         <div class="col-md-12 headerimg">
+            @if (Auth::check())
+                <a href="{{ route('posts.edit', array('id' => $post->id)) }}" class="admin-creation-action">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a href="{{ route('posts.destroy', array('id' => $post->id)) }}" class="admin-creation-action" data-method="delete">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            @endif
             <div class="head">
                 <div class="meta">
                     <span class="title">{{ $post->title }}</span>

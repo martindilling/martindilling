@@ -6,6 +6,14 @@
         <div class="row">
             @foreach ($creations as $creation)
                 <div class="col-md-6 listitem">
+                    @if (Auth::check())
+                        <a href="{{ route('creations.edit', array('id' => $creation->id)) }}" class="admin-creation-action">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="{{ route('creations.destroy', array('id' => $creation->id)) }}" class="admin-creation-action" data-method="delete">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    @endif
                     <a href="{{ route('creations.show', array('id' => $creation->id, 'slug' => $creation->slug)) }}">
                         <div class="meta">
                             <span class="title">{{ $creation->title }}</span>

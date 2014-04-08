@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\MessageBag;
 use MDH\Repositories\CreationRepositoryInterface;
 
 class CreationsController extends \BaseController {
@@ -40,7 +41,10 @@ class CreationsController extends \BaseController {
      */
     public function create()
     {
-        return View::make('creations.create');
+        $routeUri = Route::getRoutes()->getByName('creations.show')->getUri();
+        $routeUri = str_replace('{slug?}', '', $routeUri);
+        
+        return View::make('creations.create')->withEditing(false)->with('routeUri', $routeUri);
     }
 
     /**
@@ -52,7 +56,7 @@ class CreationsController extends \BaseController {
     {
         $input = Input::all();
 
-        $validator = Validator::make($input, Creation::$rules);
+        $validator = Validator::make($input, MDH\Entities\Creation::$rules);
 
         if ($validator->fails())
         {
@@ -61,9 +65,10 @@ class CreationsController extends \BaseController {
                 ->withInput();
         }
 
-        $this->$creations->create($input);
+        $creation = $this->creations->create(Auth::user(), $input);
 
-        return Redirect::route('creations.index');
+        $messages = new MessageBag(['success' => 'Creation was created.']);
+        return Redirect::route('creations.show', [$creation->id, $creation->slug])->withMessages($messages);
     }
 
     /**
@@ -92,9 +97,12 @@ class CreationsController extends \BaseController {
      */
     public function edit($id)
     {
-        $creation = $this->$creations->find($id);
+        $routeUri = Route::getRoutes()->getByName('creations.show')->getUri();
+        $routeUri = str_replace('{slug?}', '', $routeUri);
 
-        return View::make('creations.edit', compact('creation'));
+        $creation = $this->creations->findOr404($id);
+
+        return View::make('creations.edit', compact('creation'))->withEditing(true)->with('routeUri', $routeUri);
     }
 
     /**
@@ -106,10 +114,14 @@ class CreationsController extends \BaseController {
     public function update($id)
     {
         $input = Input::all();
+        
+        $rules = MDH\Entities\Creation::$rules;
+        
+        $rules['slug'] .= ',' . $id;
+        $rules['image'] = 'image';
+        $rules['thumb'] = 'image';
 
-        $creation = $this->$creations->findOrFail($id);
-
-        $validator = Validator::make($input, Creation::$rules);
+        $validator = Validator::make($input, $rules);
 
         if ($validator->fails())
         {
@@ -118,9 +130,10 @@ class CreationsController extends \BaseController {
                 ->withInput();
         }
 
-        $creation->update($input);
+        $creation = $this->creations->update(Auth::user(), $id, $input);
 
-        return Redirect::route('creations.index');
+        $messages = new MessageBag(['success' => 'Creation was updated.']);
+        return Redirect::route('creations.show', [$creation->id, $creation->slug])->withMessages($messages);
     }
 
     /**
@@ -131,9 +144,10 @@ class CreationsController extends \BaseController {
      */
     public function destroy($id)
     {
-        $this->$creations->destroy($id);
+        $this->creations->destroy(Auth::user(), $id);
 
-        return Redirect::route('creations.index');
+        $messages = new MessageBag(['success' => 'Creation was deleted.']);
+        return Redirect::route('creations.index')->withMessages($messages);
     }
 
 }

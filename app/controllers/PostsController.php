@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\MessageBag;
 use MDH\Repositories\PostRepositoryInterface;
 
 class PostsController extends \BaseController {
@@ -40,7 +41,10 @@ class PostsController extends \BaseController {
      */
     public function create()
     {
-        return View::make('posts.create');
+        $routeUri = Route::getRoutes()->getByName('posts.show')->getUri();
+        $routeUri = str_replace('{slug?}', '', $routeUri);
+        
+        return View::make('posts.create')->withEditing(false)->with('routeUri', $routeUri);
     }
 
     /**
@@ -52,7 +56,7 @@ class PostsController extends \BaseController {
     {
         $input = Input::all();
 
-        $validator = Validator::make($input, Post::$rules);
+        $validator = Validator::make($input, MDH\Entities\Post::$rules);
 
         if ($validator->fails())
         {
@@ -61,9 +65,10 @@ class PostsController extends \BaseController {
                 ->withInput();
         }
 
-        $this->posts->create($input);
+        $post = $this->posts->create(Auth::user(), $input);
 
-        return Redirect::route('posts.index');
+        $messages = new MessageBag(['success' => 'Post was created.']);
+        return Redirect::route('posts.show', [$post->id, $post->slug])->withMessages($messages);
     }
 
     /**
@@ -92,9 +97,12 @@ class PostsController extends \BaseController {
      */
     public function edit($id)
     {
-        $post = $this->posts->find($id);
+        $routeUri = Route::getRoutes()->getByName('creations.show')->getUri();
+        $routeUri = str_replace('{slug?}', '', $routeUri);
 
-        return View::make('posts.edit', compact('post'));
+        $post = $this->posts->findOr404($id);
+
+        return View::make('posts.edit', compact('post'))->withEditing(true)->with('routeUri', $routeUri);
     }
 
     /**
@@ -107,9 +115,11 @@ class PostsController extends \BaseController {
     {
         $input = Input::all();
 
-        $post = $this->posts->findOrFail($id);
+        $rules = MDH\Entities\Post::$rules;
 
-        $validator = Validator::make($input, Post::$rules);
+        $rules['slug'] .= ',' . $id;
+
+        $validator = Validator::make($input, $rules);
 
         if ($validator->fails())
         {
@@ -118,9 +128,10 @@ class PostsController extends \BaseController {
                 ->withInput();
         }
 
-        $post->update($input);
+        $post = $this->posts->update(Auth::user(), $id, $input);
 
-        return Redirect::route('posts.index');
+        $messages = new MessageBag(['success' => 'Post was updated.']);
+        return Redirect::route('posts.show', [$post->id, $post->slug])->withMessages($messages);
     }
 
     /**
@@ -131,9 +142,10 @@ class PostsController extends \BaseController {
      */
     public function destroy($id)
     {
-        $this->posts->destroy($id);
+        $this->posts->destroy(Auth::user(), $id);
 
-        return Redirect::route('posts.index');
+        $messages = new MessageBag(['success' => 'Post was deleted.']);
+        return Redirect::route('posts.index')->withMessages($messages);
     }
 
 }

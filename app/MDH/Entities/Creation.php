@@ -27,10 +27,10 @@ class Creation extends \Eloquent {
     public static $rules = [
         'user_id'      => '',
         'title'        => 'required',
-        'slug'         => 'required',
+        'slug'         => 'required|unique:creations,slug',
         'weblink'      => '',
-        'image'        => 'required',
-        'thumb'        => 'required',
+        'image'        => 'required|image',
+        'thumb'        => 'required|image',
         'body'         => 'required',
         'publish_at'   => 'date',
     ];
