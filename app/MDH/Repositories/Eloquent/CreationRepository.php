@@ -82,7 +82,8 @@ class CreationRepository implements CreationRepositoryInterface
 
     public function destroy(User $user, $id)
     {
-        return $user->creations()->find($id)->delete();
+        $creation = $user->creations()->find($id);
+        return $creation->delete();
     }
     
     public function allPaginated($per_page = 4)

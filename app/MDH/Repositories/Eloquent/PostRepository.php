@@ -23,7 +23,8 @@ class PostRepository implements PostRepositoryInterface
 
     public function destroy(User $user, $id)
     {
-        return $user->posts()->find($id)->delete();
+        $post = $user->posts()->find($id);
+        return $post->delete();
     }
     
     public function allPaginated($per_page = 5)
