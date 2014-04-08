@@ -10,7 +10,7 @@
                         <a href="{{ route('posts.edit', array('id' => $post->id)) }}" class="admin-creation-action">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="{{ route('posts.destroy', array('id' => $post->id)) }}" class="admin-creation-action" data-method="delete">
+                        <a href="{{ route('posts.destroy', array('id' => $post->id)) }}" class="admin-creation-action" data-method="delete" data-confirm="Are you sure?">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     @endif
