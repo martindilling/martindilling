@@ -1,12 +1,12 @@
 <li{{ set_active(array('home', 'creations.*')) }}>
     {{ link_to_route('creations.index', 'Portfolio') }}
-    @if (Auth::check())
+    @if ($userData->loggedIn)
         <a href="{{ route('creations.create') }}" class="admin-create"><span class="glyphicon glyphicon-plus"></span></a>
     @endif
 </li>
 <li{{ set_active('posts.*') }}>
     {{ link_to_route('posts.index', 'Blog') }}
-    @if (Auth::check())
+    @if ($userData->loggedIn)
         <a href="{{ route('posts.create') }}" class="admin-create"><span class="glyphicon glyphicon-plus"></span></a>
     @endif
 </li>
@@ -17,7 +17,7 @@
     {{ link_to_route('contact', 'Contact') }}
 </li>
 
-@if (Auth::check())
+@if ($userData->loggedIn)
     <li>
         {{ link_to_route('logout', 'Logout', null, ['class' => 'admin-logout']) }}
     </li>

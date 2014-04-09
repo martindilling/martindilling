@@ -11,6 +11,16 @@ class CreationPresenter extends Presenter {
         return $this->publish_at->toFormattedDateString();
     }
 
+    public function published()
+    {
+        return $this->publish_at->isPast() ? '' : 'Not published';
+    }
+
+    public function publicClass()
+    {
+        return $this->publish_at->isPast() ? 'public' : 'not-public';
+    }
+
     public function imageUrl()
     {
         $path  = Config::get('upload.root');

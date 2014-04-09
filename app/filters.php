@@ -33,6 +33,8 @@ App::after(function($request, $response)
 |
 */
 
+Route::filter('access', 'MDH\Filters\AccessFilter');
+
 Route::filter('auth', function()
 {
 	if (Auth::guest())
@@ -67,7 +69,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) return Redirect::route('home');
 });
 
 /*

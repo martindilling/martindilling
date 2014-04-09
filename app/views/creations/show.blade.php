@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-12 headerimg">
-            @if (Auth::check())
+        <div class="col-md-12 headerimg {{ $creation->present()->publicClass }}">
+            @if ($userData->isAdmin || $userData->id == $creation->user_id)
                 <a href="{{ route('creations.edit', array('id' => $creation->id)) }}" class="admin-creation-action">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
@@ -16,7 +16,7 @@
                 <div class="meta">
                     <span class="title">{{ $creation->title }}</span>
                     <span class="date hidden-xs">{{ $creation->present()->publishDate }}</span>
-                    <span class="type hidden-xs">{{-- $creation->type --}}</span>
+                    <span class="type hidden-xs">{{ $creation->present()->published }}</span>
                 </div>
                 <img src="{{ asset($creation->present()->imageUrl) }}" class="img-responsive" alt="{{ $creation->title }}">
             </div>

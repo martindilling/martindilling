@@ -43,7 +43,7 @@ class PostsController extends \BaseController {
     {
         $routeUri = Route::getRoutes()->getByName('posts.show')->getUri();
         $routeUri = str_replace('{slug?}', '', $routeUri);
-        
+
         return View::make('posts.create')->withEditing(false)->with('routeUri', $routeUri);
     }
 
@@ -56,16 +56,15 @@ class PostsController extends \BaseController {
     {
         $input = Input::all();
 
-        $validator = Validator::make($input, MDH\Entities\Post::$rules);
+        $validator = Validator::make($input, $this->posts->getRules());
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return Redirect::back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $post = $this->posts->create(Auth::user(), $input);
+        $post = $this->posts->create($input);
 
         $messages = new MessageBag(['success' => 'Post was created.']);
         return Redirect::route('posts.show', [$post->id, $post->slug])->withMessages($messages);
@@ -115,20 +114,19 @@ class PostsController extends \BaseController {
     {
         $input = Input::all();
 
-        $rules = MDH\Entities\Post::$rules;
+        $rules = $this->posts->getRules();
 
         $rules['slug'] .= ',' . $id;
 
         $validator = Validator::make($input, $rules);
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return Redirect::back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $post = $this->posts->update(Auth::user(), $id, $input);
+        $post = $this->posts->update($id, $input);
 
         $messages = new MessageBag(['success' => 'Post was updated.']);
         return Redirect::route('posts.show', [$post->id, $post->slug])->withMessages($messages);
@@ -142,7 +140,7 @@ class PostsController extends \BaseController {
      */
     public function destroy($id)
     {
-        $this->posts->destroy(Auth::user(), $id);
+        $this->posts->destroy($id);
 
         $messages = new MessageBag(['success' => 'Post was deleted.']);
         return Redirect::route('posts.index')->withMessages($messages);

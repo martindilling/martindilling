@@ -8,7 +8,7 @@ class BaseController extends Controller {
     public function __construct()
     {
         // Make sure our posts are secure
-        $this->beforeFilter('csrf', [ 'on' => 'post' ]);
+        $this->beforeFilter('csrf', [ 'on' => ['post', 'put', 'patch', 'delete'] ]);
 
         // Before event for Clockwork
         $this->beforeFilter(function()

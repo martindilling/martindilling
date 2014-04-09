@@ -31,3 +31,7 @@
     color: #ecf0f1;
     background: rgba(255,255,255, 0.4);
 }
+
+.not-public {
+    opacity: 0.6;
+}

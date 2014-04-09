@@ -43,7 +43,7 @@ class CreationsController extends \BaseController {
     {
         $routeUri = Route::getRoutes()->getByName('creations.show')->getUri();
         $routeUri = str_replace('{slug?}', '', $routeUri);
-        
+
         return View::make('creations.create')->withEditing(false)->with('routeUri', $routeUri);
     }
 
@@ -56,16 +56,15 @@ class CreationsController extends \BaseController {
     {
         $input = Input::all();
 
-        $validator = Validator::make($input, MDH\Entities\Creation::$rules);
+        $validator = Validator::make($input, $this->creations->getRules());
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return Redirect::back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $creation = $this->creations->create(Auth::user(), $input);
+        $creation = $this->creations->create($input);
 
         $messages = new MessageBag(['success' => 'Creation was created.']);
         return Redirect::route('creations.show', [$creation->id, $creation->slug])->withMessages($messages);
@@ -114,23 +113,23 @@ class CreationsController extends \BaseController {
     public function update($id)
     {
         $input = Input::all();
-        
-        $rules = MDH\Entities\Creation::$rules;
-        
+
+        // TODO: extract to Repo
+        $rules = $this->creations->getRules();
+
         $rules['slug'] .= ',' . $id;
         $rules['image'] = 'image';
         $rules['thumb'] = 'image';
 
         $validator = Validator::make($input, $rules);
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return Redirect::back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $creation = $this->creations->update(Auth::user(), $id, $input);
+        $creation = $this->creations->update($id, $input);
 
         $messages = new MessageBag(['success' => 'Creation was updated.']);
         return Redirect::route('creations.show', [$creation->id, $creation->slug])->withMessages($messages);
@@ -144,7 +143,7 @@ class CreationsController extends \BaseController {
      */
     public function destroy($id)
     {
-        $this->creations->destroy(Auth::user(), $id);
+        $this->creations->destroy($id);
 
         $messages = new MessageBag(['success' => 'Creation was deleted.']);
         return Redirect::route('creations.index')->withMessages($messages);

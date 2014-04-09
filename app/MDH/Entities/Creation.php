@@ -68,15 +68,4 @@ class Creation extends \Eloquent {
     {
         return ['publish_at', static::CREATED_AT, static::UPDATED_AT];
     }
-    
-    
-    public function getImage()
-    {
-        return 'uploads/creation/' . $this->image;
-    }
-    
-    public function getThumb()
-    {
-        return 'uploads/creation/thumbs/' . $this->thumb;
-    }
 }
