@@ -51,7 +51,14 @@
 {{ HTML::script('assets/vendor/js/js-markdown-extra.js') }}
 {{ HTML::script('assets/vendor/js/laravel-restful.js') }}
 {{ HTML::script('assets/vendor/js/prettify.js') }}
-{{ HTML::script('assets/js/main.js') }}
+{{ HTML::script('assets/vendor/js/speakingurl.min.js') }}
+{{-- HTML::script('assets/js/main.js') --}}
+{{ HTML::script('assets/js/module.prettify-code.js') }}
+{{ HTML::script('assets/js/module.date-time-picker.js') }}
+{{ HTML::script('assets/js/module.header-links.js') }}
+{{ HTML::script('assets/js/module.markdown-preview.js') }}
+{{ HTML::script('assets/js/module.utilities.js') }}
+{{ HTML::script('assets/js/app.js') }}
 @yield('scripts')
 </body>
 </html>
