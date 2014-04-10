@@ -90,7 +90,7 @@ class CreationRepository implements CreationRepositoryInterface
             $attributes['image'] = $creation->image;
         }
 
-        if (!$this->user || !$this->user->admin || $this->user->id !== $creation->user_id) {
+        if (!$this->user && !$this->user->admin && $this->user->id !== $creation->user_id) {
             throw new PermissionsException('Do not have permissions to update');
         }
 
@@ -102,7 +102,7 @@ class CreationRepository implements CreationRepositoryInterface
     {
         $creation = $this->findOr404($id);
 
-        if (!$this->user || !$this->user->admin || $this->user->id !== $creation->user_id) {
+        if (!$this->user && !$this->user->admin && $this->user->id !== $creation->user_id) {
             throw new PermissionsException('Do not have permissions to delete');
         }
 

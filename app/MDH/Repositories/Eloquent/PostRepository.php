@@ -67,7 +67,7 @@ class PostRepository implements PostRepositoryInterface
     {
         $post = $this->findOr404($id);
 
-        if (!$this->user || !$this->user->admin || $this->user->id !== $post->user_id) {
+        if (!$this->user && !$this->user->admin && $this->user->id !== $post->user_id) {
             throw new PermissionsException('Do not have permissions to update');
         }
 
@@ -80,7 +80,7 @@ class PostRepository implements PostRepositoryInterface
     {
         $post = $this->findOr404($id);
 
-        if (!$this->user || !$this->user->admin || $this->user->id !== $post->user_id) {
+        if (!$this->user && !$this->user->admin && $this->user->id !== $post->user_id) {
             throw new PermissionsException('Do not have permissions to delete');
         }
 
