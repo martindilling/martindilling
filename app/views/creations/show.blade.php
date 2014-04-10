@@ -20,6 +20,11 @@
                 </div>
                 <img src="{{ asset($creation->present()->imageUrl) }}" class="img-responsive" alt="{{ $creation->title }}">
             </div>
+            @if ($creation->weblink)
+                <div class="details">
+                    <a href="{{ $creation->weblink }}" class="weblink">{{ $creation->weblink }}</a>
+                </div>
+            @endif
         </div>
     </div>
     

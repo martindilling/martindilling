@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Martin Dilling-Hansen">
+    <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}" />
     <title>@yield('title', 'Martin Dilling-Hansen')</title>
 
     <!-- Styles -->
@@ -31,14 +32,16 @@
 <div class="container">
     <div class="header">
         <div class="title">Martin Dilling-Hansen</div>
-        <ul class="navigation site-nav">
+        <ul class="navigation site-nav" role="navigation">
             @include('app.navbar')
         </ul>
     </div>
 
     @include('app.messages')
 
-    @yield('content')
+    <main role=”main”>
+        @yield('content')
+    </main>
 </div>
 
 <!-- Scripts -->

@@ -32,14 +32,16 @@
 <div class="container">
     <div class="header">
         <div class="title">Martin Dilling-Hansen</div>
-        <ul class="navigation site-nav">
+        <ul class="navigation site-nav" role="navigation">
             @include('app.navbar')
         </ul>
     </div>
 
     @include('app.messages')
 
-    @yield('content')
+    <main role=”main”>
+        @yield('content')
+    </main>
 </div>
 
 <!-- Scripts -->

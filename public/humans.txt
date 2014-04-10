@@ -1,0 +1,21 @@
+/* TEAM */
+    Creator: Martin Dilling-Hansen
+    Site: http://martindilling.com
+    Twitter: @dillinghansen
+    Location: Randers, Denmark.
+
+/* THANKS */
+    Name: Taylor Otwell
+    Twitter: @taylorotwell
+    Link: http://laravel.com
+    Thanks: For giving us php developers the greatest framework, that makes developing fun every step of the way
+
+    Name: Jeffrey Way
+    Twitter: @jeffrey_way
+    Link: https://laracasts.com
+    Thanks: For learning me first CodeIgniter, then Laravel and modern php development. You just keep surprising with awesome videos 
+
+/* SITE */
+    Last update: 2014/04/10
+    Standards: 
+    Components: Laravel, Bootstrap, jQuery
