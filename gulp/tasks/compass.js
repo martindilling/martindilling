@@ -13,6 +13,5 @@ module.exports = function() {
 		.on('error', notify.onError({
 			message: "<%= error.message %>",
 			title: "SASS Error"
-		}))
-		.pipe(livereload());
+		}));
 };

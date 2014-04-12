@@ -16,6 +16,5 @@ module.exports = function() {
 			title: "JavaScript Error"
 		}))
 		.pipe(source('app.js'))
-		.pipe(gulp.dest('./public/build/'))
-		.pipe(livereload());
+		.pipe(gulp.dest('./public/build/'));
 };
