@@ -55,9 +55,9 @@
 				</div>
 
 				<div class="form-group">
-					{{ Form::label('message', 'Message:', array('class' => 'col-sm-2 col-md-2 control-label')) }}
+					{{ Form::label('body', 'Message:', array('class' => 'col-sm-2 col-md-2 control-label')) }}
 					<div class="col-sm-8 col-md-8">
-						{{ Form::textarea('message', null, array('class' => 'form-control', 'rows' => '4', 'placeholder' => 'Message')) }}
+						{{ Form::textarea('body', null, array('class' => 'form-control', 'rows' => '4', 'placeholder' => 'Message')) }}
 					</div>
 				</div>
 

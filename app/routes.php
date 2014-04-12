@@ -58,3 +58,18 @@ Route::get('contact', array('as' => 'contact', function()
 {
     return View::make('contact');
 }));
+
+/**
+ * Contact routes
+ */
+Route::post('contactform', array('as' => 'contactform', function()
+{
+    $data = Input::all();
+    
+    Mail::send('emails.contact', $data, function($message)
+    {
+        $message->to('martindilling@gmail.com', 'Martin Dilling-Hansen')->subject('Welcome!');
+    });
+    
+    dd(Input::all());
+}));

@@ -22,4 +22,9 @@ return array(
     'DB_USERNAME' => '',
     'DB_PASSWORD' => '',
 
+    /**
+     * MAIL
+     */
+    'MANDRILL_SECRET' => '',
+
 );
