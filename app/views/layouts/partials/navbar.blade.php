@@ -11,10 +11,10 @@
     @endif
 </li>
 <li{{ set_active('about.*') }}>
-    {{ link_to_route('about', 'About') }}
+    {{ link_to_route('about.show', 'About') }}
 </li>
 <li{{ set_active('contact.*') }}>
-    {{ link_to_route('contact', 'Contact') }}
+    {{ link_to_route('contact.show', 'Contact') }}
 </li>
 
 @if ($userData->loggedIn)

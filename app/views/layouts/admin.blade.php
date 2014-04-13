@@ -33,11 +33,11 @@
     <div class="header">
         <div class="title">Martin Dilling-Hansen</div>
         <ul class="navigation site-nav" role="navigation">
-            @include('app.navbar')
+            @include('layouts.partials.navbar')
         </ul>
     </div>
 
-    @include('app.messages')
+    @include('layouts.partials.messages')
 
     <main role=”main”>
         @yield('content')

@@ -46,30 +46,14 @@ Route::get(   'blog/{id}-{slug?}', array('as' => 'posts.show',    'uses' => 'Pos
 /**
  * About routes
  */
-Route::get('about', array('as' => 'about', function()
+Route::get('about', array('as' => 'about.show', function()
 {
-    return View::make('about');
+    return View::make('about.show');
 }));
 
 /**
  * Contact routes
  */
-Route::get('contact', array('as' => 'contact', function()
-{
-    return View::make('contact');
-}));
+Route::get( 'contact', array('as' => 'contact.show',     'uses' => 'ContactController@showPage'));
+Route::post('contact', array('as' => 'contact.sendmail', 'uses' => 'ContactController@sendmail'));
 
-/**
- * Contact routes
- */
-Route::post('contactform', array('as' => 'contactform', function()
-{
-    $data = Input::all();
-    
-    Mail::send('emails.contact', $data, function($message)
-    {
-        $message->to('martindilling@gmail.com', 'Martin Dilling-Hansen')->subject('Welcome!');
-    });
-    
-    dd(Input::all());
-}));
