@@ -1,8 +1,10 @@
 <?php namespace MDH\Repositories\Eloquent;
 
 use App;
+use Cache;
 use Config;
 use DateTime;
+use Input;
 use MDH\Entities\Creation;
 use MDH\Exceptions\PermissionsException;
 use MDH\Repositories\CreationRepositoryInterface;
@@ -21,7 +23,8 @@ class CreationRepository implements CreationRepositoryInterface
         $per_page = is_numeric($per_page) ? $per_page : 4;
 
         $query = Creation::orderBy('publish_at', 'desc');
-        
+        $query->select(['id', 'user_id', 'title', 'slug', 'thumb', 'publish_at']);
+
         if (!$this->user) {
             $query->where('publish_at', '<=', new DateTime('now'));
         }
@@ -34,7 +37,17 @@ class CreationRepository implements CreationRepositoryInterface
                 });
         }
 
-        return $query->paginate($per_page);
+        $sqlQuery = md5($query->toSql());
+        $page = Input::get('page') ?: '1';
+        $cacheKey = 'creations.all.page'.$page.'.'.$sqlQuery;
+
+        $result = Cache::tags('creations', 'creations.all')->rememberForever($cacheKey, function() use ($query, $per_page) {
+            $creations = $query->paginate($per_page);
+
+            return [$creations->getCollection(), (string) $creations->links()];
+        });
+
+        return $result;
     }
 
     public function findOr404($id)
@@ -56,7 +69,14 @@ class CreationRepository implements CreationRepositoryInterface
                 });
         }
 
-        return ($query->first() ?: App::abort(404));
+        $sqlQuery = md5($query->toSql());
+        $cacheKey = 'creations.show.'.$id.'.'.$sqlQuery;
+
+        $result = Cache::tags('creations', 'creations.show.'.$id)->rememberForever($cacheKey, function() use ($query) {
+            return $query->first();
+        });
+
+        return ($result ?: App::abort(404));
     }
 
     public function create($attributes)

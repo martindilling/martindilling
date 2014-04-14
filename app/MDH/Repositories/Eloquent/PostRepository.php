@@ -1,7 +1,9 @@
 <?php namespace MDH\Repositories\Eloquent;
 
 use App;
+use Cache;
 use DateTime;
+use Input;
 use MDH\Entities\Post;
 use MDH\Exceptions\PermissionsException;
 use MDH\Repositories\PostRepositoryInterface;
@@ -20,6 +22,7 @@ class PostRepository implements PostRepositoryInterface
         $per_page = is_numeric($per_page) ? $per_page : 5;
 
         $query = Post::orderBy('publish_at', 'desc');
+        $query->select(['id', 'user_id', 'title', 'slug', 'publish_at']);
 
         if (!$this->user) {
             $query->where('publish_at', '<=', new DateTime('now'));
@@ -33,7 +36,17 @@ class PostRepository implements PostRepositoryInterface
                 });
         }
 
-        return $query->paginate($per_page);
+        $sqlQuery = md5($query->toSql());
+        $page = Input::get('page') ?: '1';
+        $cacheKey = 'posts.all.page'.$page.':'.$sqlQuery;
+
+        $result = Cache::tags('posts', 'posts.all')->rememberForever($cacheKey, function() use ($query, $per_page) {
+            $posts = $query->paginate($per_page);
+
+            return [$posts->getCollection(), (string) $posts->links()];
+        });
+
+        return $result;
     }
 
     public function findOr404($id)
@@ -55,7 +68,14 @@ class PostRepository implements PostRepositoryInterface
                 });
         }
 
-        return ($query->first() ?: App::abort(404));
+        $sqlQuery = md5($query->toSql());
+        $cacheKey = 'posts.show.'.$id.'.'.$sqlQuery;
+
+        $result = Cache::tags('posts', 'posts.show.'.$id)->rememberForever($cacheKey, function() use ($query) {
+            return $query->first();
+        });
+
+        return ($result ?: App::abort(404));
     }
 
     public function create($attributes)

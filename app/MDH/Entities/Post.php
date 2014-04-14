@@ -1,9 +1,17 @@
 <?php namespace MDH\Entities;
 
+use MDH\Events\Observers\PostsObserver;
 use MDH\Services\Presenter\PresentableTrait;
 
 class Post extends \Eloquent {
     use PresentableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::observe(new PostsObserver);
+    }
 
     /**
      * The database table used by the model.

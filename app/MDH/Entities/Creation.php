@@ -1,9 +1,17 @@
 <?php namespace MDH\Entities;
 
+use MDH\Events\Observers\CreationsObserver;
 use MDH\Services\Presenter\PresentableTrait;
 
 class Creation extends \Eloquent {
     use PresentableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::observe(new CreationsObserver);
+    }
 
     /**
      * The database table used by the model.

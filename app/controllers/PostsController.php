@@ -29,9 +29,9 @@ class PostsController extends \BaseController {
      */
     public function index()
     {
-        $posts = $this->posts->allPaginated();
+        list($posts, $pagination) = $this->posts->allPaginated();
 
-        return View::make('posts.index', compact('posts'));
+        return View::make('posts.index', compact('posts', 'pagination'));
     }
 
     /**

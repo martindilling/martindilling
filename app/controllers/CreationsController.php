@@ -29,9 +29,9 @@ class CreationsController extends \BaseController {
      */
     public function index()
     {
-        $creations = $this->creations->allPaginated();
+        list($creations, $pagination) = $this->creations->allPaginated();
 
-        return View::make('creations.index', compact('creations'));
+        return View::make('creations.index', compact('creations', 'pagination'));
     }
 
     /**

@@ -29,7 +29,7 @@
         @endforeach
         
         <div class="pagination-center">
-            {{ $creations->links() }}
+            {{ $pagination }}
         </div>
     @else
         There are no creations

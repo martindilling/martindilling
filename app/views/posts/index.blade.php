@@ -26,7 +26,7 @@
         </div>
         
         <div class="pagination-center">
-            {{ $posts->links() }}
+            {{ $pagination }}
         </div>
     @else
         There are no posts
