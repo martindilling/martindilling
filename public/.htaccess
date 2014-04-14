@@ -13,3 +13,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<FilesMatch \.php$>
+    UnsetEnv no-gzip
+</FilesMatch>
