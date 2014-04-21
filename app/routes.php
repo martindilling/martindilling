@@ -27,6 +27,7 @@ Route::group(array('before' => 'access:creations'), function()
 });
 Route::get(   'portfolio',              array('as' => 'creations.index',   'uses' => 'CreationsController@index'));
 Route::get(   'portfolio/{id}-{slug?}', array('as' => 'creations.show',    'uses' => 'CreationsController@show'));
+Route::get(   'portfolio/{id}',         array('as' => 'creations.showid',  'uses' => 'CreationsController@show'));
 
 
 /**
@@ -42,6 +43,7 @@ Route::group(array('before' => 'access:posts'), function()
 });
 Route::get(   'blog',              array('as' => 'posts.index',   'uses' => 'PostsController@index'));
 Route::get(   'blog/{id}-{slug?}', array('as' => 'posts.show',    'uses' => 'PostsController@show'));
+Route::get(   'blog/{id}',         array('as' => 'posts.showid',  'uses' => 'PostsController@show'));
 
 /**
  * About routes

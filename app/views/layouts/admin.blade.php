@@ -39,7 +39,7 @@
 
     @include('layouts.partials.messages')
 
-    <main role=”main”>
+    <main role="main">
         @yield('content')
     </main>
 </div>

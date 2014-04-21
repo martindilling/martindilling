@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website# article: http://ogp.me/ns/article#">
-    @section('title', 'Martin Dilling-Hansen')
-    @section('description', 'I\'m Martin, a fulltime geek, and this is my website :p')
-    @section('image', 'http://placehold.it/300x400')
-    @section('fb_og_type', 'website')
+    @section('title',       Config::get('meta.default.title'))
+    @section('description', Config::get('meta.default.description'))
+    @section('image',       Config::get('meta.default.image'))
+    @section('fb_og_type',  'website')
 
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="@yield('description')" />
-<!--    <meta name="author" content="Martin Dilling-Hansen, @dillinghansen" />-->
-    <link rel="author" href="https://plus.google.com/+MartinDillingHansen" />
-    <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}" />
-    <title>@yield('title') | martindilling.com</title>
+    @section('disqus_enabled',     false)
+    @section('disqus_shortname',   Config::get('disqus.shortname'))
+    @section('disqus_identifier',  '/'.Request::path())
+    @section('disqus_title',       $__env->yieldContent('title'))
+    @section('disqus_url',         Request::url())
+    @section('disqus_category_id', Config::get('disqus.category.general'))
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@yield('description')">
+    <link rel="author" href="{{ Config::get('meta.rel_author') }}">
+    <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}">
+    <title>@yield('title') | {{ Config::get('meta.title_suffix') }}</title>
 
     <!-- Facebook Open Graph -->
-    <meta property="fb:app_id" content="1496715557218382" />
-    <meta property="fb:admins" content="1016824456" />
-    <meta property="fb:profile_id" content="1016824456" />
-    <meta property="og:type" content="@yield('fb_og_type')" />
-    <meta property="og:site_name" content="martindilling.com" />
-    <meta property="og:url" content="{{ URL::full() }}" />
-    <meta property="og:title" content="@yield('title')" />
-    <meta property="og:description" content="@yield('description')" />
-    <meta property="og:image" content="@yield('image')" />
+    <meta property="fb:app_id"      content="{{ Config::get('meta.fb.app_id') }}">
+    <meta property="fb:admins"      content="{{ Config::get('meta.fb.admins') }}">
+    <meta property="fb:profile_id"  content="{{ Config::get('meta.fb.profile_id') }}">
+    <meta property="og:type"        content="@yield('fb_og_type')">
+    <meta property="og:site_name"   content="{{ Config::get('meta.fb.site_name') }}">
+    <meta property="og:url"         content="{{ URL::current() }}">
+    <meta property="og:title"       content="@yield('title')">
+    <meta property="og:description" content="@yield('description')">
+    <meta property="og:image"       content="@yield('image')">
     @yield('meta_facebook')
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@dillinghansen" />
-    <meta name="twitter:creator" content="@dillinghansen" />
-<!--    <meta name="twitter:title" content="@yield('title')" />-->
-<!--    <meta name="twitter:description" content="@yield('description')" />-->
-<!--    <meta name="twitter:image:src" content="@yield('image')" />-->
-    <meta name="twitter:domain" content="martindilling.com" />
+    <meta name="twitter:card"        content="summary">
+    <meta name="twitter:site"        content="{{ Config::get('meta.twitter.site') }}">
+    <meta name="twitter:creator"     content="{{ Config::get('meta.twitter.creator') }}">
+    <meta name="twitter:title"       content="@yield('title')">
+    <meta name="twitter:description" content="@yield('description')">
+    <meta name="twitter:image:src"   content="@yield('image')">
+    <meta name="twitter:domain"      content="{{ Config::get('meta.twitter.domain') }}">
 
     <!-- Styles -->
     {{ HTML::style('http://fonts.googleapis.com/css?family=Lato:100,300,400,700') }}
@@ -56,6 +62,10 @@
 @include ('layouts.partials.analytics')
 <!-- Facebook -->
 @include ('layouts.partials.facebook')
+@if ($__env->yieldContent('disqus_enabled') == true)
+<!-- Disqus Settings -->
+@include ('layouts.partials.disqussettings')
+@endif
 
 <!-- Content -->
 <div class="container">
@@ -68,7 +78,7 @@
 
     @include('layouts.partials.messages')
 
-    <main role=”main”>
+    <main role="main">
         @yield('content')
     </main>
 </div>

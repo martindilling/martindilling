@@ -5,9 +5,14 @@
 @section('image', asset($creation->present()->imageUrl))
 @section('fb_og_type', 'article')
 
+@section('disqus_enabled',     true)
+@section('disqus_identifier',  URL::route('creations.showid', array('id' => $creation->id), false))
+@section('disqus_url',         URL::route('creations.showid', array('id' => $creation->id), true))
+@section('disqus_category_id', Config::get('disqus.category.creation'))
+
 @section('meta_facebook')
-    <meta property="article:author" content="https://www.facebook.com/dillinghansen" />
-    <meta property="article:section" content="Portfolio" />
+    <meta property="article:author" content="{{ Config::get('meta.fb.article.author') }}" />
+    <meta property="article:section" content="{{ Config::get('meta.fb.article.section.creation') }}" />
 @stop
 
 @section('content')
@@ -37,12 +42,24 @@
             @endif
         </div>
     </div>
-    
+
+    <div class="row">
+        <div class="col-md-12 sharing">
+            <div class="fb-like" data-href="{{ route('creations.showid', array('id' => $creation->id)) }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12 text">
             <section class="entry-content">
                 {{ $creation->present()->markdownBody }}
             </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 comments">
+            @include('layouts.partials.disquscomments')
         </div>
     </div>
 

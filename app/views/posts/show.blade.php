@@ -4,10 +4,16 @@
 @section('description', Str::limit(trim(preg_replace('/\r\n+|\r+|\n+/', '. ', strip_tags($post->present()->markdownBody))), 150))
 @section('fb_og_type', 'article')
 
+@section('disqus_enabled',     true)
+@section('disqus_identifier',  URL::route('posts.showid', array('id' => $post->id), false))
+@section('disqus_url',         URL::route('posts.showid', array('id' => $post->id), true))
+@section('disqus_category_id', Config::get('disqus.category.post'))
+
 @section('meta_facebook')
-    <meta property="article:author" content="https://www.facebook.com/dillinghansen" />
-    <meta property="article:section" content="Blog" />
+    <meta property="article:author" content="{{ Config::get('meta.fb.article.author') }}" />
+    <meta property="article:section" content="{{ Config::get('meta.fb.article.section.post') }}" />
 @stop
+
 
 @section('content')
 
@@ -30,12 +36,24 @@
             </div>
         </div>
     </div>
-    
+
+    <div class="row">
+        <div class="col-md-12 sharing">
+            <div class="fb-like" data-href="{{ route('posts.showid', array('id' => $post->id)) }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12 text">
             <section class="entry-content">
                 {{ $post->present()->markdownBody }}
             </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 comments">
+            @include('layouts.partials.disquscomments')
         </div>
     </div>
 

@@ -4,6 +4,6 @@
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'config.analytics_id', 'config.analytics_domain');
+    ga('create', '{{ Config::get('analytics.id') }}', '{{ Config::get('analytics.domain') }}');
     ga('send', 'pageview');
 </script>

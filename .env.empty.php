@@ -15,6 +15,12 @@ return array(
     'APP_ENV' => 'production',
 
     /**
+     * Analytics
+     */
+    'ANALYTICS_ID'     => '',
+    'ANALYTICS_DOMAIN' => '',
+
+    /**
      * Database
      */
     'DB_HOST'     => '',
