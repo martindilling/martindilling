@@ -11,11 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('description')">
     <meta name="author" content="Martin Dilling-Hansen, @dillinghansen">
+    <link rel="author" href="https://plus.google.com/+MartinDillingHansen"/>
     <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}" />
     <title>@yield('title') | martindilling.com</title>
 
     <!-- Facebook Open Graph -->
     <meta property="fb:app_id" content="1496715557218382" />
+    <meta property="fb:admins" content="1016824456" />
     <meta property="og:type" content="@yield('fb_og_type')" />
     <meta property="og:site_name" content="martindilling.com" />
     <meta property="og:url" content="{{ URL::full() }}" />

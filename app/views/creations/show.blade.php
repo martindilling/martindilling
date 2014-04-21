@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title', $creation->title)
-@section('description', Str::limit(trim(preg_replace('/\r\n+|\r+|\n+/', '. ', strip_tags($creation->present()->markdownBody))), 180))
+@section('description', Str::limit(trim(preg_replace('/\r\n+|\r+|\n+/', '. ', strip_tags($creation->present()->markdownBody))), 150))
 @section('image', asset($creation->present()->imageUrl))
 @section('fb_og_type', 'article')
 
