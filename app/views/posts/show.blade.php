@@ -4,6 +4,11 @@
 @section('description', Str::limit(trim(preg_replace('/\r\n+|\r+|\n+/', '. ', strip_tags($post->present()->markdownBody))), 150))
 @section('fb_og_type', 'article')
 
+@section('meta_facebook')
+    <meta property="article:author" content="https://www.facebook.com/dillinghansen" />
+    <meta property="article:section" content="Blog" />
+@stop
+
 @section('content')
 
     <div class="row">

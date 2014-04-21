@@ -5,6 +5,11 @@
 @section('image', asset($creation->present()->imageUrl))
 @section('fb_og_type', 'article')
 
+@section('meta_facebook')
+    <meta property="article:author" content="https://www.facebook.com/dillinghansen" />
+    <meta property="article:section" content="Portfolio" />
+@stop
+
 @section('content')
 
     <div class="row">

@@ -10,41 +10,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="@yield('description')" />
-    <meta name="author" content="Martin Dilling-Hansen, @dillinghansen" />
-    <meta property="author" content="Martin Dilling-Hansen, @dillinghansen" />
+<!--    <meta name="author" content="Martin Dilling-Hansen, @dillinghansen" />-->
     <link rel="author" href="https://plus.google.com/+MartinDillingHansen" />
     <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}" />
     <title>@yield('title') | martindilling.com</title>
-
-    <meta property="place:location:latitude" content="56.4650642" />
-    <meta property="place:location:longitude" content="10.0259614" />
-    <meta property="business:contact_data:street_address" content="Hobrovej 37 3. tv." />
-    <meta property="business:contact_data:locality" content="Randers C" />
-    <meta property="business:contact_data:postal_code" content="8900" />
-    <meta property="business:contact_data:country_name" content="Denmark" />
-    <meta property="business:contact_data:email" content="martindilling@gmail.com" />
-    <meta property="business:contact_data:phone_number" content="+45 60186053" />
-    <meta property="business:contact_data:website" content="http://martindilling.com" />
 
     <!-- Facebook Open Graph -->
     <meta property="fb:app_id" content="1496715557218382" />
     <meta property="fb:admins" content="1016824456" />
     <meta property="fb:profile_id" content="1016824456" />
-    <meta property="article:author" content="https://www.facebook.com/dillinghansen" />
     <meta property="og:type" content="@yield('fb_og_type')" />
     <meta property="og:site_name" content="martindilling.com" />
     <meta property="og:url" content="{{ URL::full() }}" />
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
     <meta property="og:image" content="@yield('image')" />
+    @yield('meta_facebook')
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="martindilling.com" />
-    <meta name="twitter:creator" content="dillinghansen" />
-    <meta name="twitter:title" content="@yield('title')" />
-    <meta name="twitter:description" content="@yield('description')" />
-    <meta name="twitter:image:src" content="@yield('image')" />
+    <meta name="twitter:site" content="@dillinghansen" />
+    <meta name="twitter:creator" content="@dillinghansen" />
+<!--    <meta name="twitter:title" content="@yield('title')" />-->
+<!--    <meta name="twitter:description" content="@yield('description')" />-->
+<!--    <meta name="twitter:image:src" content="@yield('image')" />-->
     <meta name="twitter:domain" content="martindilling.com" />
 
     <!-- Styles -->
