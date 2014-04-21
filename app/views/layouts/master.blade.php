@@ -88,7 +88,7 @@
 {{ HTML::script('build/app.js') }}
 @yield('scripts')
 
-<script type="text/javascript">
+{{--<script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = '@yield('disqus_shortname')';
 
@@ -99,6 +99,6 @@
         s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
-</script>
+</script>--}}
 </body>
 </html>
