@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title', $post->title)
+@section('description', Str::limit(trim(preg_replace('/\r\n+|\r+|\n+/', '. ', strip_tags($post->present()->markdownBody))), 180))
+@section('fb_og_type', 'article')
+
 @section('content')
 
     <div class="row">

@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Portfolio')
+
 @section('content')
 
     @if ($creations->count())

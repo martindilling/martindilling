@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Contact me')
+
 @section('content')
 
     <div class="row">
@@ -31,6 +33,15 @@
 
     <div class="row">
         <div class="col-md-12 text">
+            <div class="row">
+                <div class="col-sm-offset-2 col-md-offset-2 col-sm-8 col-md-8">
+                    <p class="no-top-margin">
+                        If you have any questions or just want to chat, you can contact me using any of the links above.
+                        Or you can use the form below. I will do my best to get back to you as soon as possible :)
+                    <p>
+                </div>
+            </div>
+            
 
             @include('contact._form')
 
