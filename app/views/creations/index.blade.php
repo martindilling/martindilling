@@ -17,6 +17,7 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         @endif
+                        <a href="{{ route('creations.show', array('id' => $creation->id, 'slug' => $creation->slug)) }}#disqus_thread" data-disqus-identifier="{{ URL::route('creations.showid', array('id' => $creation->id), false) }}">Link</a>
                         <a href="{{ route('creations.show', array('id' => $creation->id, 'slug' => $creation->slug)) }}">
                             <div class="meta">
                                 <span class="title">{{ $creation->title }}</span>
