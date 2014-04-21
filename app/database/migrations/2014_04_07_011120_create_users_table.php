@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration {
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('remember_token');
             $table->timestamps();
         });
 
@@ -27,14 +28,6 @@ class CreateUsersTable extends Migration {
             'active'   => 1,
             'name'     => 'Martin Dilling-Hansen',
             'email'    => 'martindilling@gmail.com',
-            'password' => Hash::make('password'),
-        ]);
-
-        DB::table('users')->insert([
-            'admin'    => 1,
-            'active'   => 1,
-            'name'     => 'Demo User',
-            'email'    => 'demo@example.com',
             'password' => Hash::make('password'),
         ]);
     }
