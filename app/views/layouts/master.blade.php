@@ -18,6 +18,7 @@
     <!-- Facebook Open Graph -->
     <meta property="fb:app_id" content="1496715557218382" />
     <meta property="fb:admins" content="1016824456" />
+    <meta property="article:author" content="1016824456" />
     <meta property="og:type" content="@yield('fb_og_type')" />
     <meta property="og:site_name" content="martindilling.com" />
     <meta property="og:url" content="{{ URL::full() }}" />
