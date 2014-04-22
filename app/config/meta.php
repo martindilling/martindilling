@@ -5,7 +5,7 @@ return array(
     'default' => [
         'title'       => 'Martin Dilling-Hansen',
         'description' => 'I\'m Martin, a fulltime geek, and this is my website :p',
-        'image'       => 'assets/img/sharing_image.png',
+        'image'       => 'assets/img/sharing-image.png',
     ],
     
     'title_suffix' => 'martindilling.com',
