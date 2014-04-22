@@ -46,9 +46,23 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
+use Illuminate\Support\MessageBag;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    Log::error($exception);
+
+    $messages = new MessageBag(['error' => 'An unexpected error occurred with message:<br>' . $exception->getMessage()]);
+    return Redirect::home()->withMessages($messages);
+});
+
+App::error(function(NotFoundHttpException $exception, $code)
+{
+    Log::error($exception);
+
+    $messages = new MessageBag(['error' => 'The page you tried to access doesn\'t exist!']);
+    return Redirect::home()->withMessages($messages);
 });
 
 /*

@@ -56,10 +56,11 @@
     <script src="{{ url('assets/vendor/js/html5shiv.js') }}"></script>
     <script src="{{ url('assets/vendor/js/respond.min.js') }}"></script>
     <![endif]-->
+
+    <!-- Google Analytics -->
+    @include ('layouts.partials.analytics')
 </head>
 <body>
-<!-- Google Analytics -->
-@include ('layouts.partials.analytics')
 <!-- Facebook -->
 @include ('layouts.partials.facebook')
 @if ($__env->yieldContent('disqus_enabled') == true)
