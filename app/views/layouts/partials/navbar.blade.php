@@ -1,5 +1,5 @@
 <li{{ set_active(array('home', 'creations.*')) }}>
-    {{ link_to_route('creations.index', 'Portfolio') }}
+    {{ link_to_route('home', 'Portfolio') }}
     @if ($userData->loggedIn)
         <a href="{{ route('creations.create') }}" class="admin-create"><span class="glyphicon glyphicon-plus"></span></a>
     @endif
