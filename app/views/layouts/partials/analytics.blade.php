@@ -5,5 +5,6 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', '{{ Config::get('analytics.id') }}', '{{ Config::get('analytics.domain') }}');
+    ga('require', 'displayfeatures');
     ga('send', 'pageview');
 </script>

@@ -15,6 +15,11 @@ return array(
     'APP_ENV' => 'production',
 
     /**
+     * Encryption Key
+     */
+    'APP_KEY' => 'YourSecretKey!!!',
+
+    /**
      * Analytics
      */
     'ANALYTICS_ID'     => '',
