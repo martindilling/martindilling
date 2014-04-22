@@ -40,6 +40,7 @@
     <div class="row">
         <div class="col-md-12 sharing">
             <div class="fb-like" data-href="{{ route('posts.showid', array('id' => $post->id)) }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+            <hr/>
         </div>
     </div>
 
@@ -52,7 +53,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12 comments">
+        <div class="col-md-12 comments-block">
             @include('layouts.partials.disquscomments')
         </div>
     </div>
