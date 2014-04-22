@@ -53,8 +53,10 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12 comments-block">
-            @include('layouts.partials.disquscomments')
+        <div class="col-md-12">
+            <div class="comments-block">
+                @include('layouts.partials.disquscomments')
+            </div>
         </div>
     </div>
 

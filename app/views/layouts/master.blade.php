@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website# article: http://ogp.me/ns/article#">
     @section('title',       Config::get('meta.default.title'))
     @section('description', Config::get('meta.default.description'))
-    @section('image',       Config::get('meta.default.image'))
+    @section('image',       asset(Config::get('meta.default.image')))
     @section('fb_og_type',  'website')
 
     @section('disqus_enabled',     false)
